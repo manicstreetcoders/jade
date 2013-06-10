@@ -1,2 +1,26 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<style>
+  img.displayed { 
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+  }
+</style>
+<img class="displayed" src="/assets/sqspc2-1.jpg" width=640 />
+
+<hr />
+
+<style>
+  #login_or_register {
+    text-align:center;
+  }
+</style>
+<div id="login_or_register">
+  <%= link_to "로그인", new_user_session_path %> |
+  <%= link_to "등록", new_user_registration_path %> |
+  <%= link_to "클라이언트", '#' %>
+
+</div>
+
+<!--
+<div class="fb-like"  data-send="true" data-width="450" data-show-faces="true"></div>
+-->

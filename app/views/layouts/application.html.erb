@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Jade" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Dasolin" %></title>
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -32,51 +32,64 @@
 
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'images/favicon.ico', :rel => 'shortcut icon' %>
+    <link href="/assets/favicon.ico" rel="shortcut icon" >
+
+    <!-- Google Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Enriqueta:400,700" rel="stylesheet" type="text/css" >
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" type="text/css" >
+
   </head>
   <body>
+    <div id="fb-root"></div>
 
     <div class="navbar navbar-fluid-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Jade</a>
+          <a class="brand" href="/">Dasolin</a>
+          <!--
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+          </div>
+          -->
+          <div class="pull-right">
+            <% if user_signed_in? %>
+              <ul class="nav">
+                <li id="fat-menu" class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <%= current_user.email %><b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            <% end %>
+          </div><!--/.pull-right -->
+        </div><!--/.container-fluid -->
+      </div><!--/.navbar-inner -->
+    </div><!--/.navbar-fluid-top -->
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
+        <div class="span12">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div><!--/row-->
 
+      <hr />
+
       <footer>
-        <p>&copy; Company 2012</p>
+        <p>&copy; Dasolin Company 2013</p>
       </footer>
+
+      <!--
+      <%= debug(params) if Rails.env.development? %>
+      -->
 
     </div> <!-- /container -->
 
@@ -84,6 +97,16 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
+    <script>
+      (function(d,s,id){
+        var fb_appid="144880112370835";
+        var js,fjs=d.getElementsByTagName(s)[0];
+        if(d.getElementById(id)) return;
+        js=d.createElement(s); js.id=id;
+        js.src="//connect.facebook.net/ko_KR/all.js#xfbml=1&appId="+fb_appid;
+        fjs.parentNode.insertBefore(js,fjs);
+      }(document,'script','facebook-jssdk'));
+    </script>
 
   </body>
 </html>
