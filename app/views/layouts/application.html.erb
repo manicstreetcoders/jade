@@ -51,6 +51,14 @@
             <%= drop_down_divider %>
             <%= menu_item "로그아웃", destroy_user_session_path, :method => :delete %>
           <% end %>
+        <% elsif client_signed_in? %> 
+          <%= menu_item "클라이언트 모드", '#' %> 
+          <%= menu_divider %>
+          <%= drop_down current_client.email do %>
+            <%= menu_item "마이페이지", '#' %>
+            <%= drop_down_divider %>
+            <%= menu_item "로그아웃", destroy_client_session_path, :method => :delete %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
@@ -61,7 +69,7 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-      </div><!--/row-->
+      </div>
 
       <hr />
 

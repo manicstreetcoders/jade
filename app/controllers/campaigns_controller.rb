@@ -1,5 +1,7 @@
+include ApplicationHelper
+
 class CampaignsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate!
 
   # GET /campaigns
   # GET /campaigns.json
