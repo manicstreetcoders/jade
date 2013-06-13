@@ -1,3 +1,6 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :client, :name, :thumbnail
+  attr_accessible :name, :start, :end
+  belongs_to :client
+
+  validates :name, :presence => true
 end

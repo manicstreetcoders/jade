@@ -37,11 +37,9 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:thumbnail) %></th>
-      <th><%= model_class.human_attribute_name(:client) %></th>
+      <th><%= model_class.human_attribute_name(:client_id) %></th>
       <th><%= model_class.human_attribute_name(:start) %></th>
       <th><%= model_class.human_attribute_name(:end) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -50,11 +48,9 @@
       <tr>
         <td><%= link_to campaign.id, campaign_path(campaign) %></td>
         <td><%= campaign.name %></td>
-        <td><%= campaign.thumbnail %></td>
-        <td><%= campaign.client %></td>
+        <td><%= campaign.client.email if campaign.client %></td>
         <td><%= campaign.start %></td>
         <td><%= campaign.end %></td>
-        <td><%=l campaign.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_campaign_path(campaign), :class => 'btn btn-mini' %>
@@ -69,6 +65,8 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_campaign_path,
-            :class => 'btn btn-primary' %>
+<% if client_signed_in? %>
+	<%= link_to t('.new', :default => t("helpers.links.new")),
+	            new_campaign_path,
+	            :class => 'btn btn-primary' %>
+<% end %>

@@ -2,6 +2,7 @@ include ApplicationHelper
 
 class CampaignsController < ApplicationController
   before_filter :authenticate!
+  before_filter :authenticate_client!, :except => [:index, :show]
 
   # GET /campaigns
   # GET /campaigns.json
@@ -45,6 +46,10 @@ class CampaignsController < ApplicationController
   # POST /campaigns.json
   def create
     @campaign = Campaign.new(params[:campaign])
+
+    @campaign.client = current_client
+    @campaign.start = "01/01/2013"
+    @campaign.end = "12/12/2013"
 
     respond_to do |format|
       if @campaign.save

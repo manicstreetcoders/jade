@@ -1,0 +1,20 @@
+<%= simple_form_for @campaign, :html => { :class => 'form-horizontal' } do |f| %>
+<!-- Calendar -->
+  <fieldset>
+    <div class="control-group">
+      <label class="control-label" for="period">기간:</label>
+      <div class="controls">
+        <div class="input-prepend">
+          <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="campaign_period" id="campaign_period" value="03/18/2013 - 03/23/2013" />
+        </div>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.input :name, label: '캠페인 제목:' %>
+    </div>
+    <div class='control-group'>
+      <%= f.button :submit %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")), campaigns_path, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>
