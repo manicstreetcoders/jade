@@ -4,4 +4,4 @@
 
 jQuery ->
   $('.carousel').carousel( {interval: 3000} )
-  $('#campaign_period').daterangepicker()
+  $('#campaign_period').daterangepicker({ format: "YYYY-MM-DD" })

@@ -48,8 +48,6 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new(params[:campaign])
 
     @campaign.client = current_client
-    @campaign.start = "01/01/2013"
-    @campaign.end = "12/12/2013"
 
     respond_to do |format|
       if @campaign.save
