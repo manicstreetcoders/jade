@@ -1,10 +1,13 @@
 Jade::Application.routes.draw do
   root :to => 'welcome#index'
+
   get "welcome/index"
 
   resources :campaigns
-  resources :posts
-  devise_for :clients
+ 
+  resources :after_register
+
+  devise_for :clients, :controllers => { :registrations => "registrations" }
   devise_for :users
 
   devise_for :admin_users, ActiveAdmin::Devise.config
